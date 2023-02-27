@@ -1,12 +1,21 @@
-This is a [Plasmo extension](https://docs.plasmo.com/) project bootstrapped with [`plasmo init`](https://www.npmjs.com/package/plasmo).
+# LeetCode Improved
+
+A browser extension to improve your LeetCode quality of life. Made with [Plasmo](https://plasmo.com).
+
+## Features
+
+- [x] Automatically retry run code when it fails due to rate limits
+- [x] Run one specific test case (useful if other inputted test cases take a long time to run)
+- [x] Automatically start the problem timer
+- [ ] Traditional test case input (instead of one field at a time)
+- [ ] Show runtime and memory usage in submission list view
+- [ ] Show number of successful test cases for wrong answer submissions
 
 ## Getting Started
 
 First, run the development server:
 
 ```bash
-pnpm dev
-# or
 npm run dev
 ```
 
@@ -21,8 +30,6 @@ For further guidance, [visit our Documentation](https://docs.plasmo.com/)
 Run the following:
 
 ```bash
-pnpm build
-# or
 npm run build
 ```
 
