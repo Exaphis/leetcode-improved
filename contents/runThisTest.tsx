@@ -15,10 +15,9 @@ const CustomButton = () => {
         ) as HTMLElement
       ).innerText.substring("Case ".length)
     );
-    const numTestCases =
-      document.querySelector(
-        "#qd-content > div.h-full.flex-col.ssg__qd-splitter-secondary-w > div > div:nth-child(3) > div > div > div.flex.flex-grow.overflow-y-auto > div > div > div > div.flex.w-full.flex-row.items-start.justify-between.gap-4 > div"
-      ).childElementCount - 1;
+    const numTestCases = document.querySelectorAll(
+      "#qd-content > div.h-full.flex-col.ssg__qd-splitter-secondary-w > div > div:nth-child(3) > div > div > div.flex.flex-grow.overflow-y-auto > div > div > div > div.flex.w-full.flex-row.items-start.justify-between.gap-4 > div > button.rounded-lg"
+    ).length;
 
     // since a background service worker overrides the fetch API in the current page, it can't access
     // any of the service worker's local variables.
@@ -62,6 +61,7 @@ export const getRootContainer = async ({
   mountState?: PlasmoCSUIMountState;
 }) => {
   const container = document.createElement("div");
+  container.id = "lci-runThisTest";
 
   mountState?.hostSet.add(container);
   mountState?.hostMap.set(container, anchor);
