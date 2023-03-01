@@ -2,7 +2,7 @@ import type {
   PlasmoCSConfig,
   PlasmoCSUIAnchor,
   PlasmoCSUIMountState,
-  PlasmoGetOverlayAnchor
+  PlasmoGetInlineAnchor
 } from "plasmo";
 import { useRef } from "react";
 
@@ -102,9 +102,10 @@ export const config: PlasmoCSConfig = {
   all_frames: true
 };
 
-export const getInlineAnchor: PlasmoGetOverlayAnchor = async () =>
+export const getInlineAnchor: PlasmoGetInlineAnchor = async () =>
   document.querySelector("#lci-runThisTest");
 
+// override getRootContainer in order to inherit site styles
 export const getRootContainer = async ({
   anchor,
   mountState

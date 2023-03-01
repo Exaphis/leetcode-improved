@@ -8,7 +8,7 @@ A browser extension to improve your LeetCode quality of life. Made with [Plasmo]
 - [x] Run one specific test case (useful if other inputted test cases take a long time to run)
 - [x] Automatically start the problem timer
 - [x] Traditional test case input (instead of one field at a time)
-- [ ] Show runtime and memory usage in submission list view
+- [x] Show runtime and memory usage in submission list view
 - [ ] Show number of successful test cases for wrong answer submissions
 
 ## Getting Started

@@ -2,7 +2,7 @@ import type {
   PlasmoCSConfig,
   PlasmoCSUIAnchor,
   PlasmoCSUIMountState,
-  PlasmoGetOverlayAnchor
+  PlasmoGetInlineAnchor
 } from "plasmo";
 
 const CustomButton = () => {
@@ -48,7 +48,7 @@ export const config: PlasmoCSConfig = {
   all_frames: true
 };
 
-export const getInlineAnchor: PlasmoGetOverlayAnchor = async () =>
+export const getInlineAnchor: PlasmoGetInlineAnchor = async () =>
   document.querySelector(
     "#qd-content > div.h-full.flex-col.ssg__qd-splitter-secondary-w > div > div:nth-child(3) > div > div > div.flex.flex-grow.overflow-y-auto > div > div > div > div.space-y-4"
   );
