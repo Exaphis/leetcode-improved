@@ -6,6 +6,12 @@ import type {
 } from "plasmo";
 import { useEffect, useState } from "react";
 
+const unescapeUtf8 = (str: string) => {
+  return str.replace(/\\u([\d\w]{4})/gi, (match, grp) => {
+    return String.fromCharCode(parseInt(grp, 16));
+  });
+};
+
 const SubmissionDetails = () => {
   const [totalCorrect, setTotalCorrect] = useState<number | null>(null);
   const [totalTestcases, setTotalTestcases] = useState<number | null>(null);
@@ -63,8 +69,8 @@ const SubmissionDetails = () => {
             /expected_output\s*:\s*'(.*?)'/
           )[1];
           const codeOutput = pageData.match(/code_output\s*:\s*'(.*?)'/)[1];
-          setExpectedOutput(expectedOutput);
-          setCodeOutput(codeOutput);
+          setExpectedOutput(unescapeUtf8(expectedOutput));
+          setCodeOutput(unescapeUtf8(codeOutput));
         } catch (e) {
           console.error(e);
         }
