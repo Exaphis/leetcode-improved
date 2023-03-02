@@ -9,7 +9,7 @@ A browser extension to improve your LeetCode quality of life. Made with [Plasmo]
 - [x] Automatically start the problem timer
 - [x] Traditional test case input (instead of one field at a time)
 - [x] Show runtime and memory usage in submission list view
-- [ ] Show number of successful test cases for wrong answer submissions
+- [x] Show number of successful test cases for wrong answer submissions
 
 ## Getting Started
 

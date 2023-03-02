@@ -34,7 +34,6 @@ const RuntimeMemoryTags = () => {
       ref.current.parentElement.parentElement.parentElement.parentElement;
     const submissions = submissionEl.parentElement.children;
     const i = Array.from(submissions).indexOf(submissionEl);
-    console.log(i);
 
     fetch("https://leetcode.com/graphql/", {
       method: "POST",
@@ -84,7 +83,7 @@ const RuntimeMemoryTags = () => {
   }, [ref]);
 
   return (
-    <div className="flex gap-4" ref={ref}>
+    <div className="flex gap-4 text-label-2 dark:text-dark-label-2" ref={ref}>
       <span className="bg-fill-3 dark:bg-dark-fill-3 flex px-3 py-1 text-xs rounded-full">
         {`Runtime: ${runtime}`}
       </span>
