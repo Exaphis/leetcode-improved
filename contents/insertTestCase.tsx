@@ -39,7 +39,6 @@ const CustomField = () => {
 
     const inputText = input.innerText;
     const inputLines = inputText.split("\n");
-    console.log(inputLines);
     for (
       let i = 0;
       i < Math.min(inputLines.length, variableFields.length);

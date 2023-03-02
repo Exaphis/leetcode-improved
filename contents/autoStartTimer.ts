@@ -21,7 +21,6 @@ import { Settings, getOrSetDefault } from "~settings";
 
     if (clock && autoStartTimer) {
       clock.click();
-      console.log("clicked");
       instance.disconnect();
     }
   });

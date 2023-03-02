@@ -79,5 +79,3 @@ chrome.tabs.onUpdated.addListener(async (tab) => {
     console.log(e);
   }
 });
-
-console.log("background sw, registered");

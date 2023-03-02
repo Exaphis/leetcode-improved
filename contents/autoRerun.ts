@@ -29,7 +29,6 @@ export const config: PlasmoCSConfig = {
       errorSpan &&
       errorSpan.innerText.includes("You have attempted to run code too soon.")
     ) {
-      console.log("rerunning");
       runButton.click();
     }
   });

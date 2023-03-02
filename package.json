@@ -2,7 +2,7 @@
   "name": "leetcode-improved",
   "displayName": "Leetcode improved",
   "version": "0.0.1",
-  "description": "A basic Plasmo extension.",
+  "description": "A browser extension to improve your LeetCode quality of life.",
   "author": "Kevin Wu",
   "packageManager": "yarn@1.22.19",
   "scripts": {
