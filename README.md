@@ -3,6 +3,8 @@
 A browser extension to improve your LeetCode quality of life.
 Made with [Plasmo](https://plasmo.com).
 
+Available on the [Chrome Web Store](https://chrome.google.com/webstore/detail/leetcode-improved/eoodmbicbdclgjakobinkcpbbahdkiog).
+
 ## Features
 
 Restores some features from the old LeetCode UI that are missing in the
