@@ -1,7 +1,7 @@
 {
   "name": "leetcode-improved",
   "displayName": "LeetCode Improved",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A browser extension to improve your LeetCode quality of life.",
   "author": "Kevin Wu",
   "packageManager": "yarn@1.22.19",
