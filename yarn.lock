@@ -1275,6 +1275,11 @@
   "resolved" "https://registry.npmjs.org/@lmdb/lmdb-darwin-arm64/-/lmdb-darwin-arm64-2.5.2.tgz"
   "version" "2.5.2"
 
+"@medv/finder@^3.0.0":
+  "integrity" "sha512-GhTmdnzIm+EMCSAF6QL1JunVN/9r4GUbYBWbhX7zOCtNqhsA/Bo9ltr+Cl5p5U4F9PTEwnF7pWmSPWC3H3MUQQ=="
+  "resolved" "https://registry.npmjs.org/@medv/finder/-/finder-3.0.0.tgz"
+  "version" "3.0.0"
+
 "@mischnic/json-sourcemap@^0.1.0", "@mischnic/json-sourcemap@0.1.0":
   "integrity" "sha512-dQb3QnfNqmQNYA4nFSN/uLaByIic58gOXq4Y4XqLOWmOrw73KmJPt/HLyG0wvn1bnR6mBKs/Uwvkh+Hns1T0XA=="
   "resolved" "https://registry.npmjs.org/@mischnic/json-sourcemap/-/json-sourcemap-0.1.0.tgz"

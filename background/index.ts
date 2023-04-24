@@ -1,6 +1,8 @@
 export {};
 
-function overrideFetch() {
+function toInject() {
+  // override the fetch function to allow us to intercept requests to the
+  // LeetCode API and modify them to only run a single test case
   if ((window as any).lciFetch) return;
 
   const originalFetch = window.fetch;
@@ -63,6 +65,35 @@ function overrideFetch() {
     return resp;
   };
   (window as any).lciFetch = true;
+
+  // add a listener to allow the content script to get the react props
+  // of a given element
+  function getReact(element) {
+    // https://stackoverflow.com/a/39165137/6686559
+    const key = Object.keys(element).find((key) =>
+      key.startsWith("__reactFiber$")
+    );
+    const domFiber = element[key];
+    if (domFiber == null) return null;
+
+    let parentFiber = domFiber.return;
+    while (typeof parentFiber.type == "string") {
+      parentFiber = parentFiber.return;
+    }
+    return parentFiber;
+  }
+
+  window.addEventListener("message", (event) => {
+    if (event.data.source === "lci-cs-get-react-props") {
+      const el = document.querySelector(event.data.selector);
+      const reactEl = getReact(el);
+      window.postMessage({
+        source: "lci-bg-get-react-props",
+        selector: event.data.selector,
+        reactProps: reactEl.memoizedProps
+      });
+    }
+  });
 }
 
 chrome.tabs.onUpdated.addListener(async (tab) => {
@@ -72,7 +103,7 @@ chrome.tabs.onUpdated.addListener(async (tab) => {
         tabId: tab
       },
       world: "MAIN",
-      func: overrideFetch
+      func: toInject
     });
   } catch (e) {
     // ignore errors due to the tab not matching what we have in the manifest
