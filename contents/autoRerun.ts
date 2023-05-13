@@ -17,7 +17,7 @@ export const config: PlasmoCSConfig = {
     }
 
     const runButton = document.querySelector(
-      "#qd-content > div.h-full.flex-col.ssg__qd-splitter-secondary-w > div > div:nth-child(3) > div > div > div:nth-child(3) > div > div > div.ml-auto.flex.items-center.space-x-4 > button.px-3.py-1\\.5.font-medium.items-center.whitespace-nowrap.transition-all.focus\\:outline-none.inline-flex.bg-fill-3.dark\\:bg-dark-fill-3.hover\\:bg-fill-2.dark\\:hover\\:bg-dark-fill-2.text-label-2.dark\\:text-dark-label-2.rounded-lg"
+      "#qd-content > div.h-full.flex-col.ssg__qd-splitter-secondary-w > div > div:nth-child(3) > div > div > div > div > div.mx-4.my-\\[10px\\].flex.w-full > div.relative.ml-auto.flex.items-center.gap-x-4 > button.px-3.py-1\\.5.font-medium.items-center.whitespace-nowrap.transition-all.focus\\:outline-none.inline-flex.bg-fill-3.dark\\:bg-dark-fill-3.hover\\:bg-fill-2.dark\\:hover\\:bg-dark-fill-2.text-label-2.dark\\:text-dark-label-2.h-6.select-none.rounded.text-xs"
     ) as HTMLElement;
 
     const errorSpan = document.querySelector(

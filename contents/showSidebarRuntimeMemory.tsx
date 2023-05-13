@@ -5,41 +5,64 @@ import type {
   PlasmoCSUIMountState,
   PlasmoGetInlineAnchorList
 } from "plasmo";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const RuntimeMemoryTags = () => {
   const [runtime, setRuntime] = useState("");
   const [memory, setMemory] = useState("");
+  const [selector, setSelector] = useState("");
 
-  const taggedRef = (ref: HTMLDivElement) => {
-    if (!ref) return;
-    // display relative is set by default in the parent, which makes the tags float over
-    // the header upon scroll
-    ref.parentElement.setAttribute("style", "");
-
-    // fetch the runtime and memory information from the react props of the submission
-    const submissionEl =
-      ref.parentElement.parentElement.parentElement.parentElement;
-
-    // send message to background script as content script cannot access certain element properties
-    // https://github.com/PlasmoHQ/plasmo/discussions/174
-    const selector = finder(submissionEl);
-    window.addEventListener("message", (event) => {
+  useEffect(() => {
+    function handleReactProps(event) {
       if (
         event.data.source === "lci-bg-get-react-props" &&
-        event.data.selector == selector
+        event.data.selector === selector &&
+        event.data.reactProps
       ) {
         const { runtime, memory } = event.data.reactProps.submission;
         setRuntime(runtime);
         setMemory(memory);
       }
-    });
+    }
 
-    window.postMessage({
-      source: "lci-cs-get-react-props",
-      selector: selector
-    });
-  };
+    function refreshStats() {
+      if (!selector) return;
+
+      // send message to background script as content script cannot access certain element properties
+      // https://github.com/PlasmoHQ/plasmo/discussions/174
+      window.addEventListener("message", handleReactProps);
+
+      window.postMessage({
+        source: "lci-cs-get-react-props",
+        selector: selector
+      });
+    }
+
+    // add a timer to refresh the stats every second
+    // otherwise, the stats will duplicate when the user creates a new submission
+    refreshStats();
+    const interval = setInterval(refreshStats, 1000);
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener("message", handleReactProps);
+    };
+  }, [selector]);
+
+  const taggedRef = useCallback(
+    (ref: HTMLDivElement) => {
+      if (!ref) return;
+      // display relative is set by default in the parent, which makes the tags float over
+      // the header upon scroll
+      ref.parentElement.setAttribute("style", "");
+
+      // fetch the runtime and memory information from the react props of the submission
+      const submissionEl =
+        ref.parentElement.parentElement.parentElement.parentElement;
+
+      setSelector(finder(submissionEl));
+    },
+    [setSelector]
+  );
 
   return (
     <div

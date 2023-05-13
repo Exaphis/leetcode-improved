@@ -11,12 +11,12 @@ const CustomButton = () => {
     const testCaseNum = parseInt(
       (
         document.querySelector(
-          "#qd-content > div.h-full.flex-col.ssg__qd-splitter-secondary-w > div > div:nth-child(3) > div > div > div.flex.flex-grow.overflow-y-auto > div > div > div > div.flex.w-full.flex-row.items-start.justify-between.gap-4 > div > button.dark\\:bg-dark-fill-3"
+          '[data-e2e-locator="console-testcase-tag"].bg-fill-3'
         ) as HTMLElement
       ).innerText.substring("Case ".length)
     );
     const numTestCases = document.querySelectorAll(
-      "#qd-content > div.h-full.flex-col.ssg__qd-splitter-secondary-w > div > div:nth-child(3) > div > div > div.flex.flex-grow.overflow-y-auto > div > div > div > div.flex.w-full.flex-row.items-start.justify-between.gap-4 > div > button.rounded-lg"
+      '[data-e2e-locator="console-testcase-tag"]'
     ).length;
 
     // since a background service worker overrides the fetch API in the current page, it can't access
@@ -27,7 +27,7 @@ const CustomButton = () => {
     document.body.setAttribute("data-num-test-cases", numTestCases.toString());
     (
       document.querySelector(
-        "#qd-content > div.h-full.flex-col.ssg__qd-splitter-secondary-w > div > div:nth-child(3) > div > div > div > div > div > div.ml-auto.flex.items-center.space-x-4 > button.px-3.py-1\\.5.font-medium.items-center.whitespace-nowrap.transition-all.focus\\:outline-none.inline-flex.bg-fill-3.dark\\:bg-dark-fill-3.hover\\:bg-fill-2.dark\\:hover\\:bg-dark-fill-2.text-label-2.dark\\:text-dark-label-2.rounded-lg"
+        '[data-e2e-locator="console-run-button"]'
       ) as HTMLElement
     ).click();
   }
@@ -50,7 +50,7 @@ export const config: PlasmoCSConfig = {
 
 export const getInlineAnchor: PlasmoGetInlineAnchor = async () =>
   document.querySelector(
-    "#qd-content > div.h-full.flex-col.ssg__qd-splitter-secondary-w > div > div:nth-child(3) > div > div > div.flex.flex-grow.overflow-y-auto > div > div > div > div.space-y-4"
+    "#qd-content > div.h-full.flex-col.ssg__qd-splitter-secondary-w > div > div:nth-child(3) > div > div > div.flex.flex-grow.overflow-y-auto > div > div:nth-child(1) > div > div.space-y-4"
   );
 
 export const getRootContainer = async ({

@@ -61,7 +61,7 @@ const CustomField = () => {
   }
 
   return (
-    <div className="flex flex-col space-y-2 h-full w-full">
+    <div className="flex flex-col space-y-2 h-full w-full mb-3">
       <div className="flex h-full w-full flex-col space-y-2">
         <div className="text-xs font-medium text-label-3 dark:text-dark-label-3">
           Multiline input

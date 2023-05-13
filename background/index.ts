@@ -86,6 +86,8 @@ function toInject() {
   window.addEventListener("message", (event) => {
     if (event.data.source === "lci-cs-get-react-props") {
       const el = document.querySelector(event.data.selector);
+      if (!el) return;
+
       const reactEl = getReact(el);
       window.postMessage({
         source: "lci-bg-get-react-props",
