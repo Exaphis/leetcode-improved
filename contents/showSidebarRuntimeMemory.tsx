@@ -10,9 +10,10 @@ import { useCallback, useEffect, useState } from "react";
 const RuntimeMemoryTags = () => {
   const [runtime, setRuntime] = useState("");
   const [memory, setMemory] = useState("");
-  const [selector, setSelector] = useState("");
+  const [currElem, setCurrElem] = useState(null);
 
   useEffect(() => {
+    let selector = "";
     function handleReactProps(event) {
       if (
         event.data.source === "lci-bg-get-react-props" &&
@@ -26,8 +27,12 @@ const RuntimeMemoryTags = () => {
     }
 
     function refreshStats() {
-      if (!selector) return;
+      // fetch the runtime and memory information from the react props of the submission
+      if (!currElem) return;
+      const submissionEl =
+        currElem.parentElement.parentElement.parentElement.parentElement;
 
+      selector = finder(submissionEl);
       // send message to background script as content script cannot access certain element properties
       // https://github.com/PlasmoHQ/plasmo/discussions/174
       window.addEventListener("message", handleReactProps);
@@ -46,23 +51,15 @@ const RuntimeMemoryTags = () => {
       clearInterval(interval);
       window.removeEventListener("message", handleReactProps);
     };
-  }, [selector]);
+  }, [currElem]);
 
-  const taggedRef = useCallback(
-    (ref: HTMLDivElement) => {
-      if (!ref) return;
-      // display relative is set by default in the parent, which makes the tags float over
-      // the header upon scroll
-      ref.parentElement.setAttribute("style", "");
-
-      // fetch the runtime and memory information from the react props of the submission
-      const submissionEl =
-        ref.parentElement.parentElement.parentElement.parentElement;
-
-      setSelector(finder(submissionEl));
-    },
-    [setSelector]
-  );
+  const taggedRef = useCallback((ref: HTMLDivElement) => {
+    if (!ref) return;
+    // display relative is set by default in the parent, which makes the tags float over
+    // the header upon scroll
+    ref.parentElement.setAttribute("style", "");
+    setCurrElem(ref);
+  }, []);
 
   return (
     <div
