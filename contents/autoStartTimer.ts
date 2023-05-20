@@ -2,6 +2,7 @@ import type { PlasmoCSConfig } from "plasmo";
 
 import { Storage } from "@plasmohq/storage";
 
+import { CLOCK_SELECTOR } from "~selectors";
 import { Settings, getOrSetDefault } from "~settings";
 
 (async () => {
@@ -15,9 +16,7 @@ import { Settings, getOrSetDefault } from "~settings";
       return;
     }
 
-    const clock = document.querySelector(
-      "#__next > div > div > div > nav > div > div > div.relative.ml-4.flex.items-center.space-x-4 > div.hidden.lc-lg\\:block > div > div > div"
-    ) as HTMLElement;
+    const clock = document.querySelector(CLOCK_SELECTOR) as HTMLElement;
 
     if (clock && autoStartTimer) {
       clock.click();

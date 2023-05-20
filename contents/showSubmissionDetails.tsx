@@ -52,19 +52,19 @@ const SubmissionDetails = () => {
     fetch(submissionUrl)
       .then((response) => response.text())
       .then((text) => {
-        const pageData = text.match(/var pageData = {.*?};/gs)[0];
-
-        const totalCorrect = parseInt(
-          pageData.match(/total_correct\s*:\s*'(\d+)'/)[1]
-        );
-        const totalTestcases = parseInt(
-          pageData.match(/total_testcases\s*:\s*'(\d+)'/)[1]
-        );
-        setTotalCorrect(totalCorrect);
-        setTotalTestcases(totalTestcases);
-
+        // some submissions don't have expected output
         try {
-          // some submissions don't have expected output
+          const pageData = text.match(/var pageData = {.*?};/gs)[0];
+
+          const totalCorrect = parseInt(
+            pageData.match(/total_correct\s*:\s*'(\d+)'/)[1]
+          );
+          const totalTestcases = parseInt(
+            pageData.match(/total_testcases\s*:\s*'(\d+)'/)[1]
+          );
+          setTotalCorrect(totalCorrect);
+          setTotalTestcases(totalTestcases);
+
           const expectedOutput = pageData.match(
             /expected_output\s*:\s*'(.*?)'/
           )[1];

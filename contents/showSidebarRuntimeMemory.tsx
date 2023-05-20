@@ -7,6 +7,8 @@ import type {
 } from "plasmo";
 import { useCallback, useEffect, useState } from "react";
 
+import { SUBMISSION_SIDEBAR_LANGUAGE_TAG_SELECTOR } from "~selectors";
+
 const RuntimeMemoryTags = () => {
   const [runtime, setRuntime] = useState("");
   const [memory, setMemory] = useState("");
@@ -20,6 +22,7 @@ const RuntimeMemoryTags = () => {
         event.data.selector === selector &&
         event.data.reactProps
       ) {
+        if (!event.data.reactProps.submission) return;
         const { runtime, memory } = event.data.reactProps.submission;
         setRuntime(runtime);
         setMemory(memory);
@@ -90,9 +93,7 @@ export const config: PlasmoCSConfig = {
 
 // select the language tag span on the submission element
 export const getInlineAnchorList: PlasmoGetInlineAnchorList = async () => {
-  return document.querySelectorAll(
-    "#qd-content > div.h-full.flex-col.ssg__qd-splitter-primary-w > div > div > div > div.flex.h-full.w-full.overflow-y-auto.rounded-b > div > div.h-full > div.flex.h-\\[71px\\].cursor-pointer.items-center.justify-between.py-3.px-4 > div.flex.h-full.max-w-full.flex-shrink-0.items-center.gap-3 > div.flex.w-\\[100px\\].flex-shrink-0.items-center.gap-3 > span"
-  );
+  return document.querySelectorAll(SUBMISSION_SIDEBAR_LANGUAGE_TAG_SELECTOR);
 };
 
 export const getRootContainer = async ({

@@ -6,10 +6,12 @@ import type {
 } from "plasmo";
 import { useRef } from "react";
 
+import { TESTCASE_VARIABLE_FIELD_SELECTOR } from "~selectors";
+
 const CustomField = () => {
   const inputRef = useRef<HTMLDivElement>(null);
   const variableFields = document.querySelectorAll<HTMLElement>(
-    String.raw`#qd-content > div.h-full.flex-col.ssg__qd-splitter-secondary-w > div > div:nth-child(3) > div > div > div.flex.flex-grow.overflow-y-auto > div > div > div > div.space-y-4 > div > div > div.w-full.cursor-text.rounded-lg.border.px-3.py-\[10px\].font-menlo.bg-fill-3.dark\:bg-dark-fill-3.border-transparent > div`
+    TESTCASE_VARIABLE_FIELD_SELECTOR
   );
 
   if (variableFields.length <= 1) {
