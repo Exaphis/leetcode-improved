@@ -58,6 +58,12 @@ const RuntimeMemoryTags = () => {
     // display relative is set by default in the parent, which makes the tags float over
     // the header upon scroll
     ref.parentElement.setAttribute("style", "");
+
+    // width is set to 100px in the tag container, remove this to prevent the tag text from wrapping
+    ref.parentElement.parentElement.parentElement.setAttribute(
+      "style",
+      "width: auto"
+    );
     setCurrElem(ref);
   }, []);
 
@@ -82,10 +88,12 @@ export const config: PlasmoCSConfig = {
   all_frames: true
 };
 
-export const getInlineAnchorList: PlasmoGetInlineAnchorList = async () =>
-  document.querySelectorAll(
-    String.raw`#qd-content > div.h-full.flex-col.ssg__qd-splitter-primary-w > div > div > div > div.flex.h-full.w-full.overflow-y-auto > div > div.h-full.w-full > div:not(.flex-none) > div.flex.h-full.items-center.gap-4 > div.flex.items-center.gap-4`
+// select the language tag span on the submission element
+export const getInlineAnchorList: PlasmoGetInlineAnchorList = async () => {
+  return document.querySelectorAll(
+    "#qd-content > div.h-full.flex-col.ssg__qd-splitter-primary-w > div > div > div > div.flex.h-full.w-full.overflow-y-auto.rounded-b > div > div.h-full > div.flex.h-\\[71px\\].cursor-pointer.items-center.justify-between.py-3.px-4 > div.flex.h-full.max-w-full.flex-shrink-0.items-center.gap-3 > div.flex.w-\\[100px\\].flex-shrink-0.items-center.gap-3 > span"
   );
+};
 
 export const getRootContainer = async ({
   anchor,
