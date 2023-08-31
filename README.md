@@ -1,5 +1,7 @@
 # LeetCode Improved
 
+**NOTE**: This repository is archived as most of these improvements have been added to the new LeetCode UI.
+
 A browser extension to improve your LeetCode quality of life.
 Made with [Plasmo](https://plasmo.com).
 
